@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "SendMessage";
+    Layout = null;
+}
+
+<form id="contactForm" 
+      method="post"
+      asp-controller="Default"
+      asp-action="SendMessage">
+
+    <div class="row g-3">
+        <div class="col-md-6">
+            <label for="contactFullName" class="form-label">Adınız Soyadınız *</label>
+            <input type="text" class="form-control" id="contactFullName" name="NameSurname" placeholder="Örn: Ahmet Yılmaz" required>
+            <div class="invalid-feedback">Lütfen adınızı ve soyadınızı giriniz.</div>
+        </div>
+
+        <div class="col-md-6">
+            <label for="contactEmail" class="form-label">E-posta Adresiniz *</label>
+            <input type="email" class="form-control" id="contactEmail" name="Email" placeholder="Örn: ahmet@example.com" required>
+            <div class="invalid-feedback">Geçerli bir e-posta adresi giriniz.</div>
+        </div>
+
+        <div class="col-12">
+            <label for="contactSubject" class="form-label">Konu *</label>
+            <input type="text" class="form-control" id="contactSubject" name="Subject" placeholder="Örn: Proje İş Birliği veya Danışmanlık" required>
+            <div class="invalid-feedback">Lütfen mesaj konusunu belirtiniz.</div>
+        </div>
+
+        <div class="col-12">
+            <label for="contactMessage" class="form-label">Mesajınız *</label>
+            <textarea class="form-control" id="contactMessage" name="MessageDetail" rows="5" placeholder="Projeniz veya paylaşmak istedikleriniz hakkında detay verebilirsiniz..." required></textarea>
+            <div class="invalid-feedback">Lütfen mesajınızı yazınız.</div>
+        </div>
+
+        <div class="col-12 mt-4">
+            <button type="submit" class="btn-custom-primary w-100 justify-content-center py-3">
+                <i class="bi bi-send-fill"></i> Mesaj Gönder
+            </button>
+        </div>
+    </div>
+</form>

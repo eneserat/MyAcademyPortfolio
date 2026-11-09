@@ -1,0 +1,68 @@
+﻿@model MyAcademyPortfolio.Entities.About
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="fw-bold mb-1">Hakkımda Bilgileri</h3>
+            <p class="text-muted mb-0">Portfolyonuzdaki kişisel bilgileri yönetin.</p>
+        </div>
+
+        <a href="/Admin/About/Update" class="btn btn-primary">
+            <i class="bi bi-pencil-square me-1"></i>
+            Bilgileri Güncelle
+        </a>
+    </div>
+
+    @if (Model == null)
+    {
+        <div class="alert alert-warning">
+            Henüz Hakkımda bilgisi eklenmemiş.
+        </div>
+    }
+    else
+    {
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <label class="text-muted small">Ad Soyad</label>
+                        <h6>@Model.NameSurname</h6>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="text-muted small">Meslek</label>
+                        <h6>@Model.JobTitle</h6>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="text-muted small">Konum</label>
+                        <h6>@Model.Location</h6>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="text-muted small">Uzmanlık</label>
+                        <h6>@Model.Expert</h6>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="text-muted small">E-posta</label>
+                        <h6>@Model.Email</h6>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="text-muted small">İş Fırsatlarına Açık mı?</label>
+                        <h6>@Model.OpenToWork</h6>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="text-muted small">Hakkımda Açıklaması</label>
+                        <p class="mb-0">@Model.Description</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

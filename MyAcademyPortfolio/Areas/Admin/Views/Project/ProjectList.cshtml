@@ -1,0 +1,125 @@
+﻿@using MyAcademyPortfolio.Entities
+@model List<Project>
+@{
+    ViewData["Title"] = "ProjectList";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+
+            <div class="card shadow-sm border-0 rounded-4">
+
+                <div class="card-header bg-white border-0 p-4">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+                        <div>
+                            <h4 class="mb-1 fw-bold">Projelerim</h4>
+                            <p class="text-muted mb-0">
+                                Portfolyonuzda yer alan projeleri buradan yönetebilirsiniz.
+                            </p>
+                        </div>
+
+                        <a href="/Admin/Project/CreateProject"
+                           class="btn text-white rounded-3 px-4"
+                           style="background-color: #7968dc;">
+                            <i class="fas fa-plus me-1"></i>
+                            Yeni Proje Ekle
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <div class="table-responsive">
+                        <table class="table align-middle table-hover">
+
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Proje Görseli</th>
+                                    <th>Proje Başlığı</th>
+                                    <th>Kategori</th>
+                                    <th>Teknolojiler</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @if (Model != null && Model.Any())
+                                {
+                                    var sıra = 1;
+
+                                    foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@sıra</td>
+
+                                            <td>
+                                                <img src="@item.CoverImageUrl"
+                                                     alt="@item.Title"
+                                                     style="width: 75px; height: 55px; object-fit: cover;"
+                                                     class="rounded-3" />
+                                            </td>
+
+                                            <td>
+                                                <span class="fw-semibold">@item.Title</span>
+                                            </td>
+
+                                            <td>
+                                                <span class="badge rounded-pill"
+                                                      style="background-color: #7968dc;">
+                                                    @item.Category?.CategoryName
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                @if (item.ProjectSkills != null)
+                                                {
+                                                    foreach (var projectSkill in item.ProjectSkills)
+                                                    {
+                                                        <span class="badge bg-success-subtle text-success rounded-pill me-1 mb-1">
+                                                            @projectSkill.SkillItem?.SkillItemName
+                                                        </span>
+                                                    }
+                                                }
+                                            </td>
+
+                                            <td>
+                                                <div class="d-flex gap-2">
+
+                                                    <a href="/Admin/Project/UpdateProject?id=@item.ProjectId"
+                                                       class="btn btn-sm btn-outline-primary rounded-3">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+
+                                                    <a href="/Admin/Project/DeleteProject?id=@item.ProjectId"
+                                                       class="btn btn-sm btn-outline-danger rounded-3">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        sıra++;
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="6" class="text-center text-muted py-4">
+                                            Henüz kayıtlı proje bulunmuyor.
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

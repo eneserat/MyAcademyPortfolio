@@ -1,0 +1,131 @@
+﻿@model List<MyAcademyPortfolio.Entities.Experience>
+@{
+    ViewData["Title"] = "ExperienceList";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container-fluid px-4 py-4">
+
+    <!-- Sayfa Başlığı -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h3 class="fw-bold mb-1">Deneyim Listesi</h3>
+            <p class="text-muted mb-0">İş deneyimlerini buradan yönetebilirsin.</p>
+        </div>
+
+        <a href="/Admin/Experience/CreateExperience"
+           class="btn text-white rounded-3 px-4"
+           style="background-color: #7968dc;">
+            <i class="fas fa-plus"></i> Yeni Deneyim Ekle
+        </a>
+
+    </div>
+
+    <!-- Deneyim Tablosu -->
+    <div class="card border-0 shadow-sm rounded-4">
+
+        <div class="card-header bg-white border-0 px-4 pt-4">
+            <h5 class="fw-bold mb-1">Deneyim Kayıtları</h5>
+            <small class="text-muted">Sistemde kayıtlı tüm iş deneyimleri.</small>
+        </div>
+
+        <div class="card-body p-4">
+
+            <div class="table-responsive">
+
+                <table class="table align-middle">
+
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Deneyim Başlığı</th>
+                            <th>Şirket Adı</th>
+                            <th>Alt Başlık</th>
+                            <th>Çalışma Süresi</th>
+                            <th>Çalışma Türü</th>
+                            <th>Durum</th>
+                            <th class="text-center">İşlemler</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @if (Model != null && Model.Any())
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <td class="text-muted">@item.ExperienceId</td>
+
+                                    <td class="fw-semibold">
+                                        @item.Title
+                                    </td>
+
+                                    <td>
+                                        @item.CompanyName
+                                    </td>
+
+                                    <td>
+                                        @item.SideTitle
+                                    </td>
+
+                                    <td>
+                                        @item.Duration
+                                    </td>
+
+                                    <td>
+                                        @item.WorkType
+                                    </td>
+
+                                    <td>
+                                        @(item.IsActive ? "Aktif" : "Pasif")
+                                    </td>
+
+                                    <td class="text-center">
+
+                                        <div class="d-flex justify-content-center gap-2">
+
+                                            <a href="/Admin/Experience/UpdateExperience?id=@item.ExperienceId"
+                                               class="btn btn-sm rounded-3 text-white"
+                                               style="background-color: #7968dc;"
+                                               title="Düzenle">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+
+                                            <a href="/Admin/Experience/DeleteExperience?id=@item.ExperienceId"
+                                               class="btn btn-sm btn-danger rounded-3"
+                                               title="Sil">
+                                                <i class="fas fa-trash"></i>
+                                            </a>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="8" class="text-center py-5">
+                                    <i class="fas fa-briefcase fa-2x text-muted mb-3"></i>
+                                    <p class="text-muted mb-0">Henüz deneyim kaydı bulunmuyor.</p>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+	
+

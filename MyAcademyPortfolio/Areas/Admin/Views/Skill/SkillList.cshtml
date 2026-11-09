@@ -1,0 +1,96 @@
+﻿@using MyAcademyPortfolio.Entities
+@model List<Skill>
+@{
+	ViewData["Title"] = "SkillList";
+	Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+<div class="container-fluid px-4 py-4">
+
+    <!-- Sayfa Başlığı -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="fw-bold mb-1">Yetenek Listesi</h3>
+            <p class="text-muted mb-0">Yetenek kategorilerini buradan yönetebilirsin.</p>
+        </div>
+
+        <a href="/Admin/Skill/AddSkill"
+           class="btn text-white rounded-3"
+           style="background-color: #7968dc;">
+            <i class="fas fa-plus me-2"></i> Yeni Yetenek Ekle
+        </a>
+    </div>
+
+    <!-- Yetenek Listesi Kartı -->
+    <div class="card border-0 shadow-sm rounded-4">
+
+        <div class="card-header bg-white border-0 px-4 pt-4">
+            <h5 class="fw-bold mb-1">Yetenek Kategorileri</h5>
+            <small class="text-muted">Sistemde kayıtlı yetenek kategorileri.</small>
+        </div>
+
+        <div class="card-body p-4">
+
+            <div class="table-responsive">
+
+                <table class="table align-middle table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Yetenek Başlığı</th>
+                            <th>Alt Açıklama</th>
+                            <th class="text-end">İşlemler</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.SkillId</td>
+
+                                <td class="fw-semibold">
+                                    @item.SkillTitle
+                                </td>
+
+                                <td>
+                                    @item.SubTitle
+                                </td>
+
+                                <td class="text-end">
+
+                                    <a href="/Admin/Skill/UpdateSkill?id=@item.SkillId"
+                                       class="btn btn-sm text-white rounded-3 me-1"
+                                       style="background-color: #7968dc;">
+                                        <i class="fas fa-edit"></i> Düzenle
+                                    </a>
+
+                                    <a href="/Admin/Skill/DeleteSkill?id=@item.SkillId"
+                                       class="btn btn-sm btn-danger rounded-3">
+                                        <i class="fas fa-trash"></i> Sil
+                                    </a>
+
+                                </td>
+                            </tr>
+                        }
+
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center py-5">
+                                    <i class="fas fa-lightbulb fa-2x text-muted mb-3"></i>
+                                    <p class="text-muted mb-0">Henüz kayıtlı yetenek bulunmuyor.</p>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>

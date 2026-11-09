@@ -1,0 +1,77 @@
+﻿
+@model MyAcademyPortfolio.Entities.Skill
+
+@{
+    ViewData["Title"] = "DeleteSkill";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container-fluid px-4 py-4">
+
+    <!-- Sayfa Başlığı -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="fw-bold mb-1">Yeteneği Sil</h3>
+            <p class="text-muted mb-0">Silmek istediğin yetenek bilgilerini kontrol et.</p>
+        </div>
+
+        <a href="/Admin/Skill/SkillList"
+           class="btn btn-light border rounded-3">
+            <i class="fas fa-arrow-left me-2"></i> Geri Dön
+        </a>
+    </div>
+
+    <!-- Yetenek Silme Kartı -->
+    <div class="card border-0 shadow-sm rounded-4">
+
+        <div class="card-header bg-white border-0 px-4 pt-4">
+            <h5 class="fw-bold mb-1">Yetenek Bilgileri</h5>
+            <small class="text-muted">Bu kaydı silmek istediğinden emin misin?</small>
+        </div>
+
+        <div class="card-body p-4">
+
+            <form action="/Admin/Skill/DeleteSkill" method="post">
+
+                <input type="hidden" name="SkillId" value="@Model.SkillId" />
+
+                <div class="row g-4">
+
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Yetenek Başlığı</label>
+                        <input type="text"
+                               class="form-control rounded-3 py-2"
+                               value="@Model.SkillTitle"
+                               readonly />
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Alt Açıklama</label>
+                        <textarea class="form-control rounded-3"
+                                  rows="4"
+                                  readonly>@Model.SubTitle</textarea>
+                    </div>
+
+                </div>
+
+                <hr class="my-4">
+
+                <div class="d-flex justify-content-end gap-2">
+
+                    <a href="/Admin/Skill/SkillList"
+                       class="btn btn-light border rounded-3 px-4">
+                        Vazgeç
+                    </a>
+
+                    <button type="submit"
+                            class="btn btn-danger rounded-3 px-4">
+                        <i class="fas fa-trash me-2"></i> Yeteneği Sil
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,120 @@
+﻿
+@model MyAcademyPortfolio.Entities.Experience
+
+@{
+    ViewData["Title"] = "UpdateExperience";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container-fluid px-4 py-4">
+
+    <!-- Sayfa Başlığı -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="fw-bold mb-1">Deneyim Güncelle</h3>
+            <p class="text-muted mb-0">Deneyim bilgilerini aşağıdaki formdan güncelleyebilirsin.</p>
+        </div>
+
+        <a href="/Admin/Experience/ExperienceList"
+           class="btn btn-light border rounded-3">
+            <i class="fas fa-arrow-left me-2"></i> Geri Dön
+        </a>
+    </div>
+
+    <!-- Deneyim Güncelleme Kartı -->
+    <div class="card border-0 shadow-sm rounded-4">
+
+        <div class="card-header bg-white border-0 px-4 pt-4">
+            <h5 class="fw-bold mb-1">Deneyim Bilgileri</h5>
+            <small class="text-muted">Lütfen deneyim bilgilerini düzenleyiniz.</small>
+        </div>
+
+        <div class="card-body p-4">
+
+            <form action="/Admin/Experience/UpdateExperience" method="post">
+
+                <input type="hidden" name="ExperienceId" value="@Model.ExperienceId" />
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Deneyim Başlığı</label>
+                        <input type="text" name="Title"
+                               class="form-control rounded-3 py-2"
+                               value="@Model.Title"
+                               placeholder="Örn: Yazılım Geliştirici" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Şirket Adı</label>
+                        <input type="text" name="CompanyName"
+                               class="form-control rounded-3 py-2"
+                               value="@Model.CompanyName"
+                               placeholder="Örn: ABC Yazılım" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Alt Başlık</label>
+                        <input type="text" name="SideTitle"
+                               class="form-control rounded-3 py-2"
+                               value="@Model.SideTitle"
+                               placeholder="Örn: Backend Developer" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Çalışma Süresi</label>
+                        <input type="text" name="Duration"
+                               class="form-control rounded-3 py-2"
+                               value="@Model.Duration"
+                               placeholder="Örn: 2022 - 2024" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Çalışma Türü</label>
+                        <input type="text" name="WorkType"
+                               class="form-control rounded-3 py-2"
+                               value="@Model.WorkType"
+                               placeholder="Örn: Tam Zamanlı" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Aktiflik Durumu</label>
+                        <select name="IsActive" class="form-select rounded-3 py-2">
+                            <option value="true" selected="@(Model.IsActive ? "selected" : null)">Aktif</option>
+                            <option value="false" selected="@(!Model.IsActive ? "selected" : null)">Pasif</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Açıklama</label>
+                        <textarea name="Description"
+                                  class="form-control rounded-3"
+                                  rows="4"
+                                  placeholder="İş deneyiminiz hakkında açıklama yazınız...">@Model.Description</textarea>
+                    </div>
+
+                </div>
+
+                <hr class="my-4">
+
+                <div class="d-flex justify-content-end gap-2">
+
+                    <a href="/Admin/Experience/ExperienceList"
+                       class="btn btn-light border rounded-3 px-4">
+                        Vazgeç
+                    </a>
+
+                    <button type="submit"
+                            class="btn rounded-3 px-4 text-white"
+                            style="background-color: #7968dc;">
+                        <i class="fas fa-save me-2"></i> Değişiklikleri Kaydet
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+```

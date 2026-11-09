@@ -1,0 +1,103 @@
+﻿
+@model MyAcademyPortfolio.Entities.Education
+
+@{
+    ViewData["Title"] = "AddEducation";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container-fluid px-4 py-4">
+
+    <!-- Sayfa Başlığı -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h3 class="fw-bold mb-1">Yeni Eğitim Ekle</h3>
+            <p class="text-muted mb-0">Eğitim bilgilerini aşağıdaki formdan ekleyebilirsin.</p>
+        </div>
+
+        <a href="/Admin/Education/EducationList"
+           class="btn btn-light border rounded-3">
+            <i class="fas fa-arrow-left me-2"></i> Geri Dön
+        </a>
+
+    </div>
+
+    <!-- Eğitim Ekleme Kartı -->
+    <div class="card border-0 shadow-sm rounded-4">
+
+        <div class="card-header bg-white border-0 px-4 pt-4">
+            <h5 class="fw-bold mb-1">Eğitim Bilgileri</h5>
+            <small class="text-muted">Lütfen gerekli alanları doldurunuz.</small>
+        </div>
+
+        <div class="card-body p-4">
+
+            <form action="/Admin/Education/AddEducation" method="post">
+
+                <div class="row g-4">
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Eğitim Başlığı</label>
+                        <input type="text"
+                               name="Title"
+                               class="form-control rounded-3 py-2"
+                               placeholder="Örn: Bilgisayar Programcılığı" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Alt Başlık</label>
+                        <input type="text"
+                               name="SubTitle"
+                               class="form-control rounded-3 py-2"
+                               placeholder="Örn: Ön Lisans" />
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label fw-semibold">Açıklama</label>
+                        <textarea name="Description"
+                                  class="form-control rounded-3"
+                                  rows="4"
+                                  placeholder="Eğitim hakkında açıklama yazınız..."></textarea>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Eğitim Süresi</label>
+                        <input type="text"
+                               name="Duration"
+                               class="form-control rounded-3 py-2"
+                               placeholder="Örn: 2022 - 2024" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Konum</label>
+                        <input type="text"
+                               name="Location"
+                               class="form-control rounded-3 py-2"
+                               placeholder="Örn: Denizli, Türkiye" />
+                    </div>
+
+                </div>
+
+                <hr class="my-4">
+
+                <div class="d-flex justify-content-end gap-2">
+
+                    <a href="/Admin/Education/EducationList"
+                       class="btn btn-light border rounded-3 px-4">
+                        Vazgeç
+                    </a>
+
+                    <button type="submit"
+                            class="btn rounded-3 px-4 text-white"
+                            style="background-color: #7968dc;">
+                        <i class="fas fa-save me-2"></i> Eğitimi Kaydet
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

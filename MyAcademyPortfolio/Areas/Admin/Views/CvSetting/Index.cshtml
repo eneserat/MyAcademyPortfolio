@@ -1,0 +1,41 @@
+﻿@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="container mt-4">
+
+    <h3>CV Yönetimi</h3>
+
+    <p>Portfolyo sitende kullanılacak CV dosyasını buradan yükleyebilirsin.</p>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-info">
+            @TempData["Message"]
+        </div>
+    }
+
+    <form asp-area="Admin"
+          asp-controller="CvSettings"
+          asp-action="Upload"
+          method="post"
+          enctype="multipart/form-data">
+
+        <div class="mb-3">
+            <label class="form-label">CV Dosyası (PDF)</label>
+
+            <input type="file"
+                   name="cvFile"
+                   class="form-control"
+                   accept=".pdf"
+                   required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            CV Yükle
+        </button>
+
+    </form>
+
+</div>

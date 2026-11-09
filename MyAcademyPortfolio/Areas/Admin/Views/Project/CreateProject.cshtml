@@ -1,0 +1,82 @@
+﻿@using MyAcademyPortfolio.Entities;
+@model List<Project>
+
+@{
+    ViewData["Title"] = "CreateProject";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
+}
+
+<form action="/Admin/Project/CreateProject" method="post">
+
+    <div class="mb-3">
+        <label class="form-label">Proje Başlığı</label>
+        <input type="text" name="Title" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Proje Açıklaması</label>
+        <textarea name="Description" class="form-control" rows="4" required></textarea>
+    </div>
+
+   
+    <div class="mb-3">
+        <label class="form-label">Proje Kategorisi</label>
+
+        <select name="CategoryId" class="form-select" required>
+            <option value="">Kategori seçiniz</option>
+
+            @foreach (var category in ViewBag.Categories)
+            {
+                <option value="@category.CategoryId">
+                    @category.CategoryName
+                </option>
+            }
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Kapak Görseli URL</label>
+        <input type="text" name="CoverImageUrl" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">GitHub URL</label>
+        <input type="url" name="GithubUrl" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Canlı Demo URL</label>
+        <input type="url" name="DemoUrl" class="form-control" />
+    </div>
+
+    <div class="mb-4">
+        <label class="form-label">Kullanılan Teknolojiler</label>
+
+        <div class="row">
+            @foreach (var skill in ViewBag.SkillItems)
+            {
+                <div class="col-md-4 col-sm-6 mb-2">
+                    <div class="form-check">
+
+                        <input type="checkbox"
+                               name="SkillItemIds"
+                               value="@skill.SkillItemId"
+                               class="form-check-input"
+                               id="skill_@skill.SkillItemId" />
+
+                        <label class="form-check-label"
+                               for="skill_@skill.SkillItemId">
+                            @skill.SkillItemName
+                        </label>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Projeyi Kaydet
+    </button>
+
+</form>
